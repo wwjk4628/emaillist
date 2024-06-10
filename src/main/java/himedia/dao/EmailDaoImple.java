@@ -59,7 +59,7 @@ public class EmailDaoImple implements EmailDao {
 			//	결과 셋 -> 자바 객체로 전환
 			while (rs.next()) {
 				//	Java 객체로 전환
-				Long no = rs.getLong("no");
+				String no = rs.getString("no");
 				String lastName = rs.getString("last_name");
 				String firstName = rs.getString("last_name");
 				String email = rs.getString("email");
@@ -125,9 +125,34 @@ public class EmailDaoImple implements EmailDao {
 	}
 
 	@Override
-	public boolean delete(Long no) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(String no) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int deleteCount = 0;
+		
+		try {
+			conn = getConnection();
+			String sql = "DELETE FROM emaillist WHERE no = ?";
+			//	PreparedStatment
+			pstmt = conn.prepareStatement(sql);
+			//	데이터 바인딩
+			pstmt.setString(1, no);
+			deleteCount = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return deleteCount == 1;
 	}
 
 }

@@ -9,7 +9,7 @@ import java.util.Date;
 //	4. toString, equals 등 객체 관련 메서드들 오버라이드
 public class EmailVo {
 	// 필드
-	private Long no;
+	private String no;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -20,7 +20,7 @@ public class EmailVo {
 	}
 
 	// 전체 필드 생성자
-	public EmailVo(Long no, String lastName, String firstName, String email, Date createdAt) {
+	public EmailVo(String no, String lastName, String firstName, String email, Date createdAt) {
 		this.no = no;
 		this.lastName = lastName;
 		this.firstName = firstName;
@@ -35,11 +35,11 @@ public class EmailVo {
 		this.email = email;
 	}
 
-	public Long getNo() {
+	public String getNo() {
 		return no;
 	}
 
-	public void setNo(Long no) {
+	public void setNo(String no) {
 		this.no = no;
 	}
 

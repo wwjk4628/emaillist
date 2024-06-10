@@ -69,7 +69,7 @@ String dbpass = context.getInitParameter("dbpass");
 			<td colspan="2" align="right">
 				<form action="<%=request.getContextPath()%>/delete.jsp"
 					method="POST" onsubmit="return confirm('정말로 삭제하시겠습니까?');">
-					<input type="hidden" name="no" value="<%--=rs.getString("no")--%><%=vo.getNo()%>">
+					<input type="hidden" name="no" value="<%=vo.getNo()%>">
 					<input type="submit" value="Delete">
 				</form>
 			</td>
