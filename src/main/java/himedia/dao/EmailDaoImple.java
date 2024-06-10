@@ -125,34 +125,35 @@ public class EmailDaoImple implements EmailDao {
 	}
 
 	@Override
-	public boolean delete(String no) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int deleteCount = 0;
-		
-		try {
-			conn = getConnection();
-			String sql = "DELETE FROM emaillist WHERE no = ?";
-			//	PreparedStatment
-			pstmt = conn.prepareStatement(sql);
-			//	데이터 바인딩
-			pstmt.setString(1, no);
-			deleteCount = pstmt.executeUpdate();
-		} catch(SQLException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return deleteCount == 1;
+	public boolean delete(Long no) {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    int deleteCount = 0;
+	    
+	    try {
+	        conn = getConnection();
+	        String sql = "DELETE FROM emaillist WHERE no = ?";
+	        // PreparedStatment
+	        pstmt = conn.prepareStatement(sql);
+	        // 데이터 바인딩
+	        pstmt.setLong(1, no); // Long 타입으로 설정
+	        deleteCount = pstmt.executeUpdate();
+	    } catch(SQLException e) {
+	        e.printStackTrace();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null)
+	                pstmt.close();
+	            if (conn != null)
+	                conn.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return deleteCount == 1;
 	}
+
 
 }

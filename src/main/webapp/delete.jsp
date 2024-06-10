@@ -12,11 +12,8 @@ ServletContext context = getServletContext();
 String dbuser = context.getInitParameter("dbuser");
 String dbpass = context.getInitParameter("dbpass");
 
-String no = request.getParameter("no");
-/* Long no = null;
-no = Long.parseLong(noParameter); */
-EmailVo vo = new EmailVo();
-vo.setNo(no);
+String noStr = request.getParameter("no");
+Long no = Long.parseLong(noStr);
 EmailDao dao = new EmailDaoImple(dbuser, dbpass);
 boolean success = dao.delete(no);
 
